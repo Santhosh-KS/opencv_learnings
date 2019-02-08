@@ -5,21 +5,35 @@
 #include <iostream>
 #include <string>
 
+#include "MatHeaderProperties.hpp"
 
+void PrintMatHeaderDetails(const cv::Mat& image)
+{
+  MatHeaderProperties mp;
+  std::cout << "\t refcount = " << mp.GetRefCount(image) << "\n";
+  std::cout << "\t Urefcount = " << mp.GetUrefCount(image) << "\n";
+  std::cout << "\t Flags = " << mp.GetFlags(image) << "\n";
+  std::cout << "\t Size = " << mp.GetSize(image) << "\n";
+  std::cout << "\t MapCount = " << mp.GetMapCount(image) << "\n";
+  std::cout << "\t Allocator Flags = " << mp.GetAllocatorFlags(image) << "\n";
+}
 
 int main(void)
 {
   cv::Mat image(10,10,1 );
-  cv::Mat im2 = image;
-  cv::Mat im3;
-  im3 = image;
   if (image.empty()) {
     std::cout << "Empty\n";
   }
   else {
-    std::cout << cv::Header_Extractor(image)<< "\n";
-    std::cout << im2.data << "\n";
-    std::cout << im3.data << "\n";
+    std::cout << "Image details\n";
+    PrintMatHeaderDetails(image);
+    std::cout << "Copy constructed details\n";
+    cv::Mat im1(image);
+    PrintMatHeaderDetails(im1);
+    std::cout << "Assignment details\n";
+    cv::Mat im2;
+    im2 = image;
+    PrintMatHeaderDetails(im1);
   }
   return 0;
 }
