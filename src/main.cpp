@@ -27,13 +27,24 @@ int main(void)
   else {
     std::cout << "Image details\n";
     PrintMatHeaderDetails(image);
-    std::cout << "Copy constructed details\n";
+    std::cout << "Copy constructed image\n";
     cv::Mat im1(image);
     PrintMatHeaderDetails(im1);
-    std::cout << "Assignment details\n";
+    std::cout << "Assignment image\n";
     cv::Mat im2;
     im2 = image;
-    PrintMatHeaderDetails(im1);
+    PrintMatHeaderDetails(im2);
+    cv::Mat im3 = image.clone();
+    std::cout << "Clone Copy Construct image\n";
+    PrintMatHeaderDetails(im3);
+    cv::Mat im4;
+    im4 = image.clone();
+    std::cout << "Clone Assignment image\n";
+    PrintMatHeaderDetails(im4);
+    cv::Mat im5;
+    image.copyTo(im5);
+    std::cout << "Copy Assignment image\n";
+    PrintMatHeaderDetails(im5);
   }
   return 0;
 }
