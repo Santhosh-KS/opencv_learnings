@@ -18,6 +18,9 @@ class MatHeaderProperties : public NotCopyable
     inline int GetMapCount(const cv::Mat& m) { return m.u->mapcount; }
     inline int GetSize(const cv::Mat& m) { return m.u->size; }
     inline int GetAllocatorFlags(const cv::Mat& m) { return m.u->allocatorFlags_; }
+    inline int GetStepP(const cv::Mat& m) { return  std::static_cast<int*>(m.step.p); }
+    inline int GetStepBuff0(const cv::Mat& m) { return  m.step.buf[0]; }
+    inline int GetStepBuff1(const cv::Mat& m) { return  m.step.buf[0]; }
 };
 
 #endif // MAT_HEADER_PROPERTY_HPP

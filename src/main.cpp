@@ -16,6 +16,9 @@ void PrintMatHeaderDetails(const cv::Mat& image)
   std::cout << "\t Size = " << mp.GetSize(image) << "\n";
   std::cout << "\t MapCount = " << mp.GetMapCount(image) << "\n";
   std::cout << "\t Allocator Flags = " << mp.GetAllocatorFlags(image) << "\n";
+  std::cout << "\t P = " << mp.GetStepP(image) << "\n";
+  std::cout << "\t buf[0] = " << mp.GetStepBuff0(image) << "\n";
+  std::cout << "\t bif[1] = " << mp.GetStepBuff1(image) << "\n";
 }
 
 int main(void)
@@ -45,6 +48,7 @@ int main(void)
     image.copyTo(im5);
     std::cout << "Copy Assignment image\n";
     PrintMatHeaderDetails(im5);
+//    THRESH_OTSU
   }
   return 0;
 }
